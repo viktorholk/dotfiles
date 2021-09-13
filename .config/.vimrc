@@ -21,11 +21,20 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
 call plug#begin('~/.vim/plugged')
-
+" Color Schemes
 Plug 'morhetz/gruvbox'
-Plug 'Valloric/YouCompleteMe'
+
+" Panels
 Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
+
+" Auto Completions
+Plug 'jiangmiao/auto-pairs'
+Plug 'Valloric/YouCompleteMe'
+
+" Language Support
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
 
 call plug#end()
 
