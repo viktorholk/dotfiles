@@ -21,16 +21,20 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
 call plug#begin('~/.vim/plugged')
-" Color Schemes
+" Visual 
 Plug 'morhetz/gruvbox'
-
+Plug 'airblade/vim-gitgutter'
+'
 " Panels
 Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-" Auto Completions
+" Auto Completions / Helpers
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe'
+Plug 'terryma/vim-multiple-cursors'
 
 " Language Support
 Plug 'vim-ruby/vim-ruby'
@@ -42,9 +46,9 @@ colorscheme gruvbox
 set background=dark
 
 let mapleader = " "
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
+let g:ycm_autoclose_preview_window_after_completion = 1
 let NERDTreeShowHidden = 1
 
-nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>h :UndotreeToggle<CR>
 nnoremap <leader>z :NERDTreeToggle<CR>
+nnoremap <leader>f :Files<CR>
