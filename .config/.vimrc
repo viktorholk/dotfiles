@@ -1,7 +1,7 @@
 syntax on
 
 set encoding=UTF-8
-
+set mouse=a
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
