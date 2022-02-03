@@ -77,6 +77,17 @@ let mapleader = " "
 let g:ycm_autoclose_preview_window_after_completion = 1
 let NERDTreeShowHidden = 1
 
+nnoremap <leader>q :quit<CR>
+nnoremap <leader>w :update<CR>
+
+" Redraw screen
+nnoremap <leader>c :nohl<CR>
+
 nnoremap <leader>h :UndotreeToggle<CR>
 nnoremap <leader>z :NERDTreeToggle<CR>
 nnoremap <leader>f :Files<CR>
+
+nnoremap <leader>t :terminal<CR>
+tnoremap <leader>T <C-\><C-n>
+
+
