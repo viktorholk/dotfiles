@@ -1,2 +1,2 @@
 # DOTFILES
-Repository for my Linux configuration files
+Repository for dotfile configuration.
