@@ -55,7 +55,6 @@ Plug 'airblade/vim-gitgutter'
 '
 " Panels
 Plug 'preservim/nerdtree'
-Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -69,25 +68,50 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
 call plug#end()
-
+" Plugin configuration
 colorscheme gruvbox
 set background=dark
-
-let mapleader = " "
-let g:ycm_autoclose_preview_window_after_completion = 1
 let NERDTreeShowHidden = 1
+
+" mapleader to space
+let mapleader = " "
+
+"" Mappings
+
+" Don't use arrow keys as navigation
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+" Move line up or down with up and down arrow keys
+nnoremap <up> ddkP
+nnoremap <down> ddp
+
+" Scroll through page
+map <C-j> <PageDown> 
+map <C-k> <PageUp>
 
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>w :update<CR>
 
+" Search
+nnoremap <leader>s /
+
+" New tab
+nnoremap <leader>. :tabnew<CR>
+" Switch tabs
+noremap <S-l> gt
+noremap <S-h> gT
+
 " Redraw screen
 nnoremap <leader>c :nohl<CR>
 
-nnoremap <leader>h :UndotreeToggle<CR>
 nnoremap <leader>z :NERDTreeToggle<CR>
 nnoremap <leader>f :Files<CR>
 
-nnoremap <leader>t :terminal<CR>
+" Terminal
+nnoremap <leader>t :terminal<CR>i
+" Close terminal
 tnoremap <leader>T <C-\><C-n>
 
 
