@@ -20,6 +20,9 @@ set updatetime=300
 set cmdheight=2
 set shortmess+=c
 
+" Use ripgrep instead of default grep for searching
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
 " Use tab or trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -49,6 +52,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
 call plug#begin('~/.vim/plugged')
+
 " Visual 
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
@@ -72,6 +76,10 @@ call plug#end()
 colorscheme gruvbox
 set background=dark
 let NERDTreeShowHidden = 1
+
+" fzf dont search for file name as addition to phrase
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 
 " mapleader to space
 let mapleader = " "
@@ -107,10 +115,12 @@ noremap <S-h> gT
 nnoremap <leader>c :nohl<CR>
 
 nnoremap <leader>z :NERDTreeToggle<CR>
+" Search for files
 nnoremap <leader>f :Files<CR>
+" Search in files 
+" Make sure ripgrep is installed
+nnoremap <leader>S :Rg<CR>
 
-" Terminal
-nnoremap <leader>t :terminal<CR>i
 " Close terminal
 tnoremap <leader>T <C-\><C-n>
 
