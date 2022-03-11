@@ -15,10 +15,11 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-
 set updatetime=300
 set cmdheight=2
 set shortmess+=c
+set foldmethod=indent
+au BufWinEnter * normal zR
 
 " Use ripgrep instead of default grep for searching
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
