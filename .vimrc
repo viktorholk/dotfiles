@@ -8,7 +8,7 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set nu
-set nowrap
+"set nowrap
 set smartcase
 set noswapfile
 set nobackup
@@ -117,5 +117,7 @@ nnoremap <leader>z :NERDTreeToggle<CR>
 " Search for files
 nnoremap <leader>f :Files<CR>
 
-" Close terminal
+"Open terminal
+nnoremap <leader>- :term<CR>i
+"Close terminal
 tnoremap <Esc> <C-\><C-n>
