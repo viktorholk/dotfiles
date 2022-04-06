@@ -19,6 +19,8 @@ set updatetime=300
 set cmdheight=2
 set shortmess+=c
 set foldmethod=indent
+set noshowmode
+" Fix foldings
 au BufWinEnter * normal zR
 
 " Use ripgrep instead of default grep for searching
@@ -45,18 +47,11 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-
 call plug#begin('~/.vim/plugged')
-
 " Visual 
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
 '
 " Panels
 Plug 'preservim/nerdtree'
@@ -66,35 +61,34 @@ Plug 'junegunn/fzf.vim'
 " Auto Completions / Helpers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
 
 " Language Support
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
 call plug#end()
+" mapleader to space
+let mapleader = " "
+
 " Plugin configuration
 colorscheme gruvbox
 set background=dark
 let NERDTreeShowHidden = 1
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
 " fzf dont search for file name as addition to phrase
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-
-" mapleader to space
-let mapleader = " "
-
 "" Mappings
-
-" Don't use arrow keys as navigation
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-" Move line up or down with up and down arrow keys
-nnoremap <up> ddkP
-nnoremap <down> ddp
+" Disable arrow keys for all modes
+for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+  exec 'noremap' key '<Nop>'
+  exec 'inoremap' key '<Nop>'
+  exec 'cnoremap' key '<Nop>'
+endfor
 
 " Scroll through page
 map <C-j> <PageDown> 
@@ -105,12 +99,16 @@ nnoremap <leader>w :update<CR>
 
 " Search
 nnoremap <leader>s /
+" Search in files 
+" Make sure ripgrep is installed
+nnoremap <leader>S :Rg<CR>
 
 " New tab
 nnoremap <leader>. :tabnew<CR>
+
 " Switch tabs
-noremap <S-l> gt
-noremap <S-h> gT
+noremap <C-l> gt
+noremap <C-h> gT
 
 " Redraw screen
 nnoremap <leader>c :nohl<CR>
@@ -118,11 +116,6 @@ nnoremap <leader>c :nohl<CR>
 nnoremap <leader>z :NERDTreeToggle<CR>
 " Search for files
 nnoremap <leader>f :Files<CR>
-" Search in files 
-" Make sure ripgrep is installed
-nnoremap <leader>S :Rg<CR>
 
 " Close terminal
-tnoremap <leader>T <C-\><C-n>
-
-
+tnoremap <Esc> <C-\><C-n>
