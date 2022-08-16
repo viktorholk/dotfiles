@@ -20,6 +20,9 @@ set cmdheight=2
 set shortmess+=c
 set foldmethod=indent
 set noshowmode
+" Allow for paste to also work outside neovim
+set clipboard=unnamed
+
 " Fix foldings
 au BufWinEnter * normal zR
 
@@ -29,6 +32,7 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 " Use tab or trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+:verbose imap <tab>
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -62,9 +66,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 
-" Language Support
+" Language Support & linting
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+Plug 'leafgarland/typescript-vim'
+Plug 'ap/vim-css-color'
+Plug 'posva/vim-vue'
+Plug 'dense-analysis/ale'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 " mapleader to space
@@ -122,7 +131,6 @@ nnoremap <leader>S :Rg<CR>
 " New tab
 nnoremap <leader>. :tabnew<CR>
 
-" Switch tabs
 noremap <C-l> gt
 noremap <C-h> gT
 
@@ -137,3 +145,5 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>- :term<CR>i
 "Close terminal
 tnoremap <Esc> <C-\><C-n>
+
+autocmd BufLeave * if &filetype == "fzf" | call feedkeys("\<C-\>\<C-n>") | endif
