@@ -43,13 +43,13 @@ Plug 'junegunn/fzf.vim'
 
 " Auto Completions / Helpers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"let g:coc_global_extensions = [
-"  \ 'coc-html',
-"  \ 'coc-solargraph',
-"  \ 'coc-pyright',
-"  \ 'coc-json',
-"  \ 'coc-tsserver'
-"  \ ]
+let g:coc_global_extensions = [
+  \ 'coc-html',
+  \ 'coc-solargraph',
+  \ 'coc-pyright',
+  \ 'coc-json',
+  \ 'coc-tsserver'
+  \ ]
 Plug 'jiangmiao/auto-pairs'
 
 " post install (yarn install | npm install) then load plugin only for editing supported files
@@ -186,10 +186,3 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
-
-
-" Load all plugins now
-packloadall
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-silent! helptags ALL
