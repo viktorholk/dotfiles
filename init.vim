@@ -12,6 +12,9 @@ set nowrap
 set smartcase
 set noswapfile
 set nobackup
+set nowritebackup
+set updatetime=300
+set signcolumn=yes
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
@@ -26,31 +29,6 @@ set clipboard=unnamed
 " Fix foldings
 au BufWinEnter * normal zR
 
-" Use ripgrep instead of default grep for searching
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-
-" Use tab or trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-:verbose imap <tab>
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
 call plug#begin('~/.vim/plugged')
 " Visual 
 Plug 'morhetz/gruvbox'
@@ -59,21 +37,41 @@ Plug 'itchyny/lightline.vim'
 '
 " Panels
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Auto Completions / Helpers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"let g:coc_global_extensions = [
+"  \ 'coc-html',
+"  \ 'coc-solargraph',
+"  \ 'coc-pyright',
+"  \ 'coc-json',
+"  \ 'coc-tsserver'
+"  \ ]
 Plug 'jiangmiao/auto-pairs'
 
+" post install (yarn install | npm install) then load plugin only for editing supported files
+" npm install -g prettier
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
 " Language Support & linting
+" JS / TS / CSS
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ap/vim-css-color'
+" Ruby & Rails
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
-Plug 'leafgarland/typescript-vim'
-Plug 'ap/vim-css-color'
+" Vue
 Plug 'posva/vim-vue'
-Plug 'dense-analysis/ale'
 Plug 'digitaltoad/vim-pug'
+" Async lint engine
+Plug 'dense-analysis/ale'
 
 call plug#end()
 " mapleader to space
@@ -84,6 +82,7 @@ colorscheme gruvbox
 set background=dark
 let NERDTreeShowHidden = 1
 
+" Show filename in lightLine
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component_function': {
@@ -145,5 +144,52 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>- :term<CR>i
 "Close terminal
 tnoremap <Esc> <C-\><C-n>
-
+" Fix fzf terminal to work with the rest of the bindings
 autocmd BufLeave * if &filetype == "fzf" | call feedkeys("\<C-\>\<C-n>") | endif
+
+
+" COC tab completion
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+
+" Load all plugins now
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
