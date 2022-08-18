@@ -42,7 +42,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Auto Completions / Helpers
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-solargraph',
@@ -107,6 +108,12 @@ let g:vimshell_force_overwrite_statusline = 0
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 "" Mappings
+
+" On windows you cannot suspend the terminal with CTRL + Z
+if has('win32')
+  nmap <C-z> <Nop>
+endif
+
 " Disable arrow keys for all modes
 for key in ['<Up>', '<Down>', '<Left>', '<Right>']
   exec 'noremap' key '<Nop>'
