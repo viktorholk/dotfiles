@@ -1,5 +1,3 @@
-syntax on
-
 set encoding=UTF-8
 set mouse=a
 set noerrorbells
@@ -10,7 +8,6 @@ set smartindent
 set nu
 set nowrap
 set smartcase
-set noswapfile
 set nobackup
 set nowritebackup
 set updatetime=300
@@ -24,72 +21,56 @@ set shortmess+=c
 set foldmethod=indent
 set noshowmode
 " Allow for paste to also work outside neovim
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 
 " Fix foldings
 au BufWinEnter * normal zR
 
 call plug#begin('~/.vim/plugged')
-" Visual 
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
-'
-" Panels
+
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
-" Auto Completions / Helpers
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-let g:coc_global_extensions = [
-  \ 'coc-html',
-  \ 'coc-solargraph',
-  \ 'coc-pyright',
-  \ 'coc-json',
-  \ 'coc-tsserver'
-  \ ]
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'jiangmiao/auto-pairs'
+Plug 'tomtom/tcomment_vim'
+Plug 'alvan/vim-closetag'
 
-" post install (yarn install | npm install) then load plugin only for editing supported files
-" npm install -g prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" Language Support & linting
-" JS / TS / CSS
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ap/vim-css-color'
-" Ruby & Rails
+
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
-" Vue
-Plug 'posva/vim-vue'
-Plug 'digitaltoad/vim-pug'
-" Async lint engine
+
 Plug 'dense-analysis/ale'
 
 call plug#end()
-" mapleader to space
-let mapleader = " "
 
-" Plugin configuration
+" Configuation
 colorscheme gruvbox
 set background=dark
-let NERDTreeShowHidden = 1
+let mapleader = " "
 
-" Show filename in lightLine
+" Plugin customization
+let NERDTreeShowHidden = 1
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ },
-      \ }
+    \ }
 
 function! LightlineFilename()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
@@ -104,39 +85,37 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
-" fzf dont search for file name as addition to phrase
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+let g:coc_global_extensions = [
+  \ 'coc-html',
+  \ 'coc-solargraph',
+  \ 'coc-pyright',
+  \ 'coc-json',
+  \ 'coc-tsserver'
+  \ ]
 
-"" Mappings
-
-" On windows you cannot suspend the terminal with CTRL + Z
-if has('win32')
+" Mappings
+if has('win32') " On Windows you cannot suspend the terminal with CTRL-Z (unbind)
   nmap <C-z> <Nop>
 endif
 
-" Disable arrow keys for all modes
-for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-  exec 'noremap' key '<Nop>'
-  exec 'inoremap' key '<Nop>'
-  exec 'cnoremap' key '<Nop>'
-endfor
-
-" Scroll through page
-map <C-j> <PageDown> 
-map <C-k> <PageUp>
+nnoremap <C-j> <PageDown> 
+nnoremap <C-k> <PageUp>
 
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>w :update<CR>
 
-" Search
+" Search for files
+nnoremap  <leader>f :Telescope find_files<CR>
+
+" Search in current file
 nnoremap <leader>s /
-" Search in files 
-" Make sure ripgrep is installed
-nnoremap <leader>S :Rg<CR>
+" Search in files
+nnoremap <leader>S :Telescope live_grep<CR>
 
 " New tab
 nnoremap <leader>. :tabnew<CR>
 
+" navigate in tabs left-right
 noremap <C-l> gt
 noremap <C-h> gT
 
@@ -144,16 +123,12 @@ noremap <C-h> gT
 nnoremap <leader>c :nohl<CR>
 
 nnoremap <leader>z :NERDTreeToggle<CR>
-" Search for files
-nnoremap <leader>f :Files<CR>
 
 "Open terminal
 nnoremap <leader>- :term<CR>i
+
 "Close terminal
 tnoremap <Esc> <C-\><C-n>
-" Fix fzf terminal to work with the rest of the bindings
-autocmd BufLeave * if &filetype == "fzf" | call feedkeys("\<C-\>\<C-n>") | endif
-
 
 " COC tab completion
 " Use tab for trigger completion with characters ahead and navigate.
@@ -175,21 +150,3 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
