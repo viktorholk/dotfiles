@@ -10,6 +10,7 @@ set nowrap
 set smartcase
 set nobackup
 set nowritebackup
+set noswapfile
 set updatetime=300
 set signcolumn=yes
 set undodir=~/.vim/undodir
