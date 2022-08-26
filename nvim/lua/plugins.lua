@@ -60,20 +60,29 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { 'nvim-lua/plenary.nvim' }
   }
   use 'windwp/nvim-autopairs'
+
+  -- Helpers
+  use 'terrortylor/nvim-comment'
+
+  -- Prettier
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
 
   -- Git
   use 'lewis6991/gitsigns.nvim'
 
   -- Appearance
-  use 'joshdick/onedark.vim'
   use 'akinsho/bufferline.nvim'
   use 'nvim-lualine/lualine.nvim'
+  use 'SmiteshP/nvim-navic'
   use 'kyazdani42/nvim-web-devicons'
-
   use 'norcalli/nvim-colorizer.lua'
+
+  -- Theme
+  use 'RRethy/nvim-base16'
 
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then

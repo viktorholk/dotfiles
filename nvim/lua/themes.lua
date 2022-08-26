@@ -1,1 +1,1 @@
-vim.cmd[[colorscheme onedark]]
+vim.cmd('colorscheme base16-tomorrow-night')
