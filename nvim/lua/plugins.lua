@@ -6,8 +6,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
   vim.cmd [[packadd packer.nvim]]
 end
-
-
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
   augroup packer_user_config
@@ -35,6 +33,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- LSP & Autocompletion
   use {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
@@ -55,22 +54,26 @@ return require('packer').startup(function(use)
     }
   }
 
- -- Tree navigation
+ -- File navigation / file helpers
 	use {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons'
-    }
   }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use 'windwp/nvim-autopairs'
 
-use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-}
-  -- Colorscheme
+  -- Git
+  use 'lewis6991/gitsigns.nvim'
+
+  -- Appearance
   use 'joshdick/onedark.vim'
-
+  use 'akinsho/bufferline.nvim'
+  use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
+
+  use 'norcalli/nvim-colorizer.lua'
 
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then

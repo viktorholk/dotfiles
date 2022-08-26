@@ -12,7 +12,7 @@ vim.g.maplocalleader = ' '
 -- General
 nnoremap('<leader><ESC>', '<Cmd>quit<CR>')
 nnoremap('<leader>w', '<Cmd>write<CR>')
-nnoremap('<leader>t', '<Cmd>tabnew<CR>')
+nnoremap('<leader>.', '<Cmd>tabnew<CR>') -- new tab
 
 -- Terminal
 nnoremap('<leader>-', '<Cmd>term<CR>i') -- Open terminal and go to insert terminal mode

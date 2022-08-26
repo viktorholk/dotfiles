@@ -25,16 +25,17 @@ vim.opt.splitright        = true
 vim.opt.scrolloff         = 12                          -- Minimum offset in lines to screen borders
 vim.opt.sidescrolloff     = 8
 vim.opt.mouse             = 'a'
-vim.opt.completeopt        = menu,menuone,noselect      -- For nvim-cmp
-      
+vim.opt.completeopt       = {'menu', 'menuone', 'noselect' }      -- For nvim-cmp
+-- buffers
+vim.bo.undofile          = true
+
 -- Vim specific
 vim.scriptencoding        = 'utf-8'
 vim.opt.encoding          = "utf-8"
 vim.opt.fileencoding      = 'utf-8'
+vim.opt.backup            = true
 vim.opt.backupdir         ='~/.vim/backup//'
 vim.opt.directory         ='~/.vim/swap//'
 vim.opt.undodir           ='~/.vim/undo//'
 vim.opt.hidden            = true                        -- Do not save when switching buffers
 vim.opt.updatetime        = 300                         -- Delay until write to Swap and HoldCommand event
-
-

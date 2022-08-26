@@ -10,7 +10,7 @@ require("mason-lspconfig").setup({
     'solargraph'
   }
 })
-local nvim_lsp = require('lspconfig')
+local nvim_lsp  = require('lspconfig')
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = vim.lsp.protocol.make_client_capabilities()

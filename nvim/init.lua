@@ -1,5 +1,5 @@
+
+require('plugins')
 require('options')
 require('mappings')
-require('plugins')
-
-vim.cmd[[colorscheme onedark]]
+require('themes')
