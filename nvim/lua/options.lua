@@ -25,6 +25,7 @@ vim.opt.splitright        = true
 vim.opt.scrolloff         = 12                          -- Minimum offset in lines to screen borders
 vim.opt.sidescrolloff     = 8
 vim.opt.mouse             = 'a'
+vim.opt.shortmess         = vim.o.shortmess .. "c"
 vim.opt.completeopt       = {'menu', 'menuone', 'noselect' }      -- For nvim-cmp
 -- buffers
 vim.bo.undofile          = true
@@ -40,5 +41,9 @@ vim.opt.undodir           ='~/.vim/undo//'
 vim.opt.hidden            = true                        -- Do not save when switching buffers
 vim.opt.updatetime        = 300                         -- Delay until write to Swap and HoldCommand event
 
-
+-- Remove line numbers in terminal
 vim.api.nvim_create_autocmd('TermOpen', { pattern = "*", command = 'setlocal nonumber norelativenumber'})
+
+-- tricky way ro disable autocomment in neovim lua
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
