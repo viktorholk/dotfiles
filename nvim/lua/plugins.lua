@@ -51,8 +51,8 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',
       'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets'
     }
   }
 
@@ -74,17 +74,12 @@ return require('packer').startup(function(use)
   -- Helpers
   use 'terrortylor/nvim-comment'
 
-  -- Prettier
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'MunifTanjim/prettier.nvim'
-
   -- Git
   use 'lewis6991/gitsigns.nvim'
 
   -- Appearance
   use 'akinsho/bufferline.nvim'
   use 'nvim-lualine/lualine.nvim'
-  use 'SmiteshP/nvim-navic'
   use 'kyazdani42/nvim-web-devicons'
   use 'norcalli/nvim-colorizer.lua'
 

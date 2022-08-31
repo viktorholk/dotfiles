@@ -1,9 +1,9 @@
-local Mapping = require('utils/mapping')
+local mappings = require('utils/mappings')
 
 --local vnoremap = Mapping.vnoremap
 --local inoremap = Mapping.inoremap
-local nnoremap = Mapping.nnoremap
-local tnoremap = Mapping.tnoremap
+local nnoremap = mappings.nnoremap
+local tnoremap = mappings.tnoremap
 
 -- Set leader to <Space>
 vim.g.mapleader = ' '

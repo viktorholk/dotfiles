@@ -1,6 +1,9 @@
 local cmp = require'cmp'
 local luasnip = require("luasnip")
+
 require("luasnip.loaders.from_vscode").lazy_load()
+require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+require('luasnip').filetype_extend("javascript", { "html" })
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -88,10 +91,3 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
---
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require'lspconfig'.html.setup {
-  capabilities = capabilities
-}

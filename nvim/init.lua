@@ -1,6 +1,6 @@
 
 require('plugins')
 require('options')
-require('mappings')
+require('maps')
 require('themes')
 
