@@ -1,21 +1,22 @@
-local mappings = require('utils/mappings')
-
 -- npm i -g vscode-langservers-extracted typescript typescript-language-server cssmodules-language-server
 
 -- gem install --user-install solargraph
 -- 'solargraph bundle' in rails dir
 
+-- dotnet tool install --global csharp-ls
+
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 local custom_flags = {
   debounce_text_changes = 150
 }
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
+
+local navic = require('nvim-navic')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -30,6 +31,8 @@ local custom_on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
+
+  navic.attach(client, bufnr)
 end
 
 -- language_config[1] language name
@@ -73,7 +76,8 @@ local language_configs = {
   },
   { 'pyright' },
   { 'tsserver' },
-  { 'solargraph' }
+  { 'solargraph' },
+  { 'csharp_ls' }
 }
 
 require("mason").setup()
@@ -116,7 +120,6 @@ for _, config in ipairs(language_configs) do
 
   nvim_lsp[language].setup(options)
 end
-local a = 5
 
 -- diagnostic signs
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }

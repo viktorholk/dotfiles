@@ -1,6 +1,4 @@
-
-require('plugins')
-require('options')
-require('maps')
-require('themes')
+require('impatient')
+require('user.core')
+require('user.plugins')
 
