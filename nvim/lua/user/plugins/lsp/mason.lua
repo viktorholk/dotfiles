@@ -16,6 +16,8 @@ end
 local servers = {
   'sumneko_lua',
   'html',
+  'jsonls',
+  'cssls',
   'cssmodules_ls',
   'pyright',
   'tsserver',
@@ -41,7 +43,7 @@ mason_lspconfig.setup {
 mason_lspconfig.setup_handlers {
   function(server_name)
     local opts = {
-      on_attach = require("user.plugins.lsp.handlers").on_attach,
+      on_attach    = require("user.plugins.lsp.handlers").on_attach,
       capabilities = require("user.plugins.lsp.handlers").capabilities,
     }
 

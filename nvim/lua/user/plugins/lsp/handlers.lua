@@ -1,9 +1,3 @@
--- npm i -g vscode-langservers-extracted typescript typescript-language-server cssmodules-language-server
--- gem install --user-install solargraph
--- 'solargraph bundle' in rails dir
-
--- dotnet tool install --global csharp-ls
-
 local M = {}
 
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
@@ -17,26 +11,27 @@ if not status_navic_ok then
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities.offsetEncoding = { "utf-16" }
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
-
-
-M.on_attach = function(client, bufnr)
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local opts = { noremap = true, silent = true, buffer = bufnr }
-
-  vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, opts)
-
-  nvim_navic.attach(client, bufnr)
-end
 
 M.flags = {
   debounce_text_changes = 150
 }
+
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
+
+M.on_attach = function(client, bufnr)
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+  vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
+
+  nvim_navic.attach(client, bufnr)
+end
 
 M.setup = function()
   local signs = { Error = "", Warn = "", Hint = "", Info = "" }
@@ -75,6 +70,5 @@ M.setup = function()
     border = "rounded",
   })
 end
-
 
 return M
