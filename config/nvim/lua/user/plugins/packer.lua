@@ -36,19 +36,19 @@ return require('packer').startup(function(use)
   use { 'nvim-lua/plenary.nvim' } -- Useful lua functions used by lots of plugins
   use { 'kyazdani42/nvim-tree.lua' } -- File explorer
   use { 'nvim-treesitter/nvim-treesitter' } -- Syntax highligter
+  use 'nvim-treesitter/nvim-treesitter-context' -- Show code context
+
   use { 'windwp/nvim-autopairs' } -- Autopairs
   use { 'terrortylor/nvim-comment' } -- Easy comment
   use { 'akinsho/bufferline.nvim' } -- Tabline
   use { 'tiagovla/scope.nvim' } -- Scope buffers and windows to tabs
   use { 'nvim-lualine/lualine.nvim' } -- Statusline
-  use { 'SmiteshP/nvim-navic' } -- Code context
   use { 'norcalli/nvim-colorizer.lua' } -- Preview colors
   use { 'lewis6991/gitsigns.nvim' } -- Git Signs
   use { 'kyazdani42/nvim-web-devicons' } -- Icons with a NERD Font
-  use { 'goolord/alpha-nvim'} -- Startup screen
+  use { 'goolord/alpha-nvim' } -- Startup screen
 
   use { 'RRethy/nvim-base16' } -- Colorscheme
-
   -- LSP
   use { 'neovim/nvim-lspconfig' } -- Enable LSP
   use { 'williamboman/mason.nvim' } -- LSP Installer

@@ -5,11 +5,6 @@ if not status_cmp_ok then
   return
 end
 
-local status_navic_ok, nvim_navic = pcall(require, 'nvim-navic')
-if not status_navic_ok then
-  return
-end
-
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
@@ -29,8 +24,6 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
-
-  nvim_navic.attach(client, bufnr)
 end
 
 M.setup = function()

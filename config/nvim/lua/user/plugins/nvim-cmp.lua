@@ -7,10 +7,13 @@ local snip_status_ok, luasnip = pcall(require, 'luasnip')
 if not snip_status_ok then
   return
 end
-
+-- Setup Luasnip
 require("luasnip.loaders.from_vscode").lazy_load()
-require('luasnip').filetype_extend("javascript", { "javascriptreact" })
-require('luasnip').filetype_extend("javascript", { "html" })
+luasnip.filetype_extend("javascript", { "javascriptreact" })
+luasnip.filetype_extend("javascript", { "html" })
+luasnip.config.set_config({
+  history = false
+})
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
