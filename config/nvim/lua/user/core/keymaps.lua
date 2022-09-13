@@ -10,17 +10,18 @@ local function close_buffer()
   local buftype = vim.bo.buftype
 
   if buftype == 'terminal' then
-    vim.cmd[[bdelete!]]
+    vim.cmd [[bdelete!]]
+  else
+    vim.cmd [[bdelete]]
   end
-  vim.cmd[[bdelete]]
 end
-
 
 -- Set leader to <Space>
 vim.g.mapleader = ' '
 
 -- General
-nnoremap('<leader>q', close_buffer) -- close buffer
+--nnoremap('<leader>q', close_buffer) -- close buffer
+nnoremap(';', close_buffer) -- close buffer
 nnoremap('<leader>w', '<Cmd>write<CR>') -- Write
 nnoremap('<leader>.', '<Cmd>tabnew<CR>') -- new tab
 
