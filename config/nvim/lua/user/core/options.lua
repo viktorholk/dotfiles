@@ -25,7 +25,8 @@ vim.opt.splitright    = true
 vim.opt.scrolloff     = 12 -- Minimum offset in lines to screen borders
 vim.opt.sidescrolloff = 8
 vim.opt.mouse         = 'a'
-vim.opt.shortmess     = vim.o.shortmess .. "c"
+vim.opt.shortmess     = vim.o.shortmess .. "c" -- Don't continue comments on space
+vim.opt.clipboard     = 'unnamedplus'
 vim.opt.completeopt   = { 'menuone', 'noselect' } -- For nvim-cmp
 vim.opt.undofile      = true
 
@@ -44,7 +45,3 @@ vim.api.nvim_create_autocmd('TermOpen', { pattern = "*", command = 'setlocal non
 -- tricky way ro disable autocomment in neovim lua
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
-
-
--- Silence navic error messages
-vim.g.navic_silence = true

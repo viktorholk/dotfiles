@@ -6,5 +6,6 @@ end
 nvim_tree.setup {
   diagnostics = {
     enable = true
-  }
+  },
+  filters = { custom = { "^.git$" } }
 }
