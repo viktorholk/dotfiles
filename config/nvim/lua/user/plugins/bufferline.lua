@@ -5,6 +5,7 @@ end
 
 bufferline.setup {
   options = {
+    mode = 'tabs',
     offsets = { { filetype = 'NvimTree', text = '', padding = 1 } },
     diagnostics = 'nvim_lsp'
   }

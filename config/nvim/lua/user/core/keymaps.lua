@@ -1,29 +1,14 @@
 local mappings = require('user.utils.mappings')
 
---local vnoremap = Mapping.vnoremap
---local inoremap = Mapping.inoremap
 local nnoremap = mappings.nnoremap
 local tnoremap = mappings.tnoremap
-
-
-local function close_buffer()
-  local buftype = vim.bo.buftype
-
-  if buftype == 'terminal' then
-    vim.cmd [[bdelete!]]
-  else
-    vim.cmd [[bdelete]]
-  end
-end
 
 -- Set leader to <Space>
 vim.g.mapleader = ' '
 
 -- General
---nnoremap('<leader>q', close_buffer) -- close buffer
-nnoremap(';', close_buffer) -- close buffer
+nnoremap(';', '<Cmd>quit<CR>') -- close buffer
 nnoremap('<leader>w', '<Cmd>write<CR>') -- Write
-nnoremap('<leader>.', '<Cmd>tabnew<CR>') -- new tab
 
 -- Window navigation
 nnoremap('<C-j>', '<C-w>j')
@@ -31,10 +16,10 @@ nnoremap('<C-k>', '<C-w>k')
 nnoremap('<C-h>', '<C-w>h')
 nnoremap('<C-l>', '<C-w>l')
 
--- Buffer navigation
-nnoremap('<S-l>', '<Cmd>BufferLineCycleNext<CR>')
-nnoremap('<S-h>', '<Cmd>BufferLineCyclePrev<CR>')
-
+-- Tabs
+nnoremap('<leader>.', '<Cmd>tabnew<CR>') -- Create new tab
+nnoremap('<right>', 'gt') -- go to right tab
+nnoremap('<left>', 'gT') -- go to left tab
 -- Code navigation
 nnoremap('<S-k>', '<PageUp>')
 nnoremap('<S-j>', '<PageDown>')
@@ -49,5 +34,4 @@ nnoremap('<leader>fb', '<Cmd>Telescope buffers<CR>')
 nnoremap('<leader>fs', '<Cmd>Telescope live_grep<CR>')
 
 -- Terminal
-nnoremap('<leader>-', '<Cmd>term<CR>i') -- Open terminal and go to insert terminal mode
-tnoremap('<ESC>', '<C-\\><C-n>') -- Close terminal with ESC
+tnoremap('<ESC>', '<C-\\><C-n>') -- Go out terminal mode

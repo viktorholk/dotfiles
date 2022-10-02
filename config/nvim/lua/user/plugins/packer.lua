@@ -36,7 +36,8 @@ return require('packer').startup(function(use)
   use { 'nvim-lua/plenary.nvim' } -- Useful lua functions used by lots of plugins
   use { 'kyazdani42/nvim-tree.lua' } -- File explorer
   use { 'nvim-treesitter/nvim-treesitter' } -- Syntax highligter
-  use 'nvim-treesitter/nvim-treesitter-context' -- Show code context
+  use { 'nvim-treesitter/nvim-treesitter-context' } -- Show code context
+  use { 'akinsho/toggleterm.nvim' } -- Terminal
 
   use { 'windwp/nvim-autopairs' } -- Autopairs
   use { 'terrortylor/nvim-comment' } -- Easy comment
