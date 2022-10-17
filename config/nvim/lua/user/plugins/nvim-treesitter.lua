@@ -15,7 +15,7 @@ nvim_treesitter_configs.setup {
 
   highlight = {
     enable = true,
-  }
+  },
 }
 
 -- TSUpdate

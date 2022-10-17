@@ -1,19 +1,15 @@
--- Bootstrap
--- Install Packer
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
-  vim.cmd [[packadd packer.nvim]]
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost packer.lua source <afile> | PackerSync
-  augroup end
-]])
+
+local packer_bootstrap = ensure_packer()
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -40,6 +36,7 @@ return require('packer').startup(function(use)
   use { 'akinsho/toggleterm.nvim' } -- Terminal
 
   use { 'windwp/nvim-autopairs' } -- Autopairs
+  use { 'windwp/nvim-ts-autotag' } -- Auto close tags
   use { 'terrortylor/nvim-comment' } -- Easy comment
   use { 'akinsho/bufferline.nvim' } -- Tabline
   use { 'tiagovla/scope.nvim' } -- Scope buffers and windows to tabs
@@ -48,12 +45,14 @@ return require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim' } -- Git Signs
   use { 'kyazdani42/nvim-web-devicons' } -- Icons with a NERD Font
   use { 'goolord/alpha-nvim' } -- Startup screen
+  use { 'folke/which-key.nvim' }
 
   use { 'RRethy/nvim-base16' } -- Colorscheme
   -- LSP
   use { 'neovim/nvim-lspconfig' } -- Enable LSP
   use { 'williamboman/mason.nvim' } -- LSP Installer
   use { 'williamboman/mason-lspconfig.nvim' } -- LSP configuration
+  use { 'jose-elias-alvarez/null-ls.nvim' } -- Neovim as a language server to inject LSP diagnostics, code actions
 
   -- CMP
   use { 'hrsh7th/nvim-cmp' } -- The completion plugin

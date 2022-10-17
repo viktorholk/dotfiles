@@ -38,6 +38,7 @@ vim.opt.directory    = '~/.vim/swap//'
 vim.opt.undodir      = '~/.vim/undo//'
 vim.opt.hidden       = true -- Do not save when switching buffers
 vim.opt.updatetime   = 100
+vim.opt.timeoutlen   = 500
 
 -- Remove line numbers in terminal
 vim.api.nvim_create_autocmd('TermOpen', { pattern = "*", command = 'setlocal nonumber norelativenumber' })
