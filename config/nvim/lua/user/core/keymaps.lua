@@ -18,8 +18,8 @@ nnoremap('<C-l>', '<C-w>l')
 
 -- Tabs
 nnoremap('<leader>.', '<Cmd>tabnew<CR>') -- Create new tab
-nnoremap('<right>', 'gt') -- go to right tab
 nnoremap('<left>', 'gT') -- go to left tab
+nnoremap('<right>', 'gt') -- go to right tab
 -- Code navigation
 nnoremap('<S-k>', '<PageUp>')
 nnoremap('<S-j>', '<PageDown>')

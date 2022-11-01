@@ -1,21 +1,21 @@
-local configs_status_ok, nvim_treesitter_configs = pcall(require, 'nvim_treesitter.configs')
+local configs_status_ok, nvim_treesitter_configs = pcall(require, 'nvim-treesitter.configs')
 if not configs_status_ok then
-  return
+    return
 end
 
 -- Run TSUpdate
 local install_status_ok, nvim_treesitter_install = pcall(require, 'nvim-treesitter.install')
 if not install_status_ok then
-  return
+    return
 end
 
 nvim_treesitter_configs.setup {
-  -- Automatically install missing parsers when entering buffer
-  auto_install = true,
+    -- Automatically install missing parsers when entering buffer
+    auto_install = true,
 
-  highlight = {
-    enable = true,
-  },
+    highlight = {
+        enable = true
+    }
 }
 
 -- TSUpdate
