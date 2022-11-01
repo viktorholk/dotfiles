@@ -14,7 +14,7 @@ M.flags = {
 }
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, opts)
 
 M.on_attach = function(client, bufnr)
     -- Mappings.
