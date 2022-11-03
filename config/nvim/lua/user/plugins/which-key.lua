@@ -17,8 +17,13 @@ which_key.setup {
 which_key.register({
   e = 'Toggle Tree',
   w = 'Write File',
-  x = 'Close Buffer',
-  q = 'Quit',
+
+  -- Double x for quit
+  x = {
+    name = 'Quit',
+    x = 'Quit'
+  },
+  q = 'Close Buffer',
 
   t = {
     name = "Terminal & Tabs",

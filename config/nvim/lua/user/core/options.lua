@@ -38,7 +38,7 @@ vim.opt.directory    = '~/.vim/swap//'
 vim.opt.undodir      = '~/.vim/undo//'
 vim.opt.hidden       = true -- Do not save when switching buffers
 vim.opt.updatetime   = 100
-vim.opt.timeoutlen   = 250
+vim.opt.timeoutlen   = 500
 
 -- tricky way ro disable autocomment in neovim lua
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")

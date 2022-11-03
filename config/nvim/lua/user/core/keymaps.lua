@@ -8,8 +8,8 @@ vim.g.mapleader = ' '
 
 -- General
 nnoremap('<leader>w', '<Cmd>write<CR>') -- Write buffer
-nnoremap('<leader>x', '<Cmd>bd<CR>') -- close current buffer
-nnoremap('<leader>q', '<Cmd>quit<CR>') -- Quit
+nnoremap('<leader>q', '<Cmd>bd<CR>') -- close current buffer
+nnoremap('<leader>xx', '<Cmd>quit<CR>') -- Quit
 
 -- Window navigation
 nnoremap('<C-j>', '<C-w>j') -- Down
