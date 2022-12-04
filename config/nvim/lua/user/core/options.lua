@@ -33,12 +33,12 @@ vim.opt.undofile      = true
 -- Vim specific
 vim.opt.fileencoding = 'utf-8'
 vim.opt.backup       = true
-vim.opt.backupdir    = '~/.vim/backup//'
-vim.opt.directory    = '~/.vim/swap//'
-vim.opt.undodir      = '~/.vim/undo//'
+vim.opt.backupdir    = '/.vim/backup//'
+vim.opt.directory    = '/.vim/swap//'
+vim.opt.undodir      = '/.vim/undo//'
 vim.opt.hidden       = true -- Do not save when switching buffers
 vim.opt.updatetime   = 100
-vim.opt.timeoutlen   = 500
+vim.opt.timeoutlen   = 250
 
 -- tricky way ro disable autocomment in neovim lua
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")
