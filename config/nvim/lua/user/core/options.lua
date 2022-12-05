@@ -20,6 +20,7 @@ vim.opt.expandtab     = true -- Convert tabs to spaces.
 vim.opt.tabstop       = 2
 vim.opt.softtabstop   = 2
 vim.opt.shiftwidth    = 2
+vim.opt.foldmethod    = 'indent'
 vim.opt.splitbelow    = true
 vim.opt.splitright    = true
 vim.opt.scrolloff     = 12 -- Minimum offset in lines to screen borders
@@ -33,9 +34,10 @@ vim.opt.undofile      = true
 -- Vim specific
 vim.opt.fileencoding = 'utf-8'
 vim.opt.backup       = true
-vim.opt.backupdir    = '/.vim/backup//'
-vim.opt.directory    = '/.vim/swap//'
-vim.opt.undodir      = '/.vim/undo//'
+local path = vim.fn.stdpath('config')
+vim.opt.backupdir    = path .. '/.backup//'
+vim.opt.directory    = path .. '/.swap//'
+vim.opt.undodir      = path .. '/.undo//'
 vim.opt.hidden       = true -- Do not save when switching buffers
 vim.opt.updatetime   = 100
 vim.opt.timeoutlen   = 250
@@ -43,3 +45,6 @@ vim.opt.timeoutlen   = 250
 -- tricky way ro disable autocomment in neovim lua
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+
+-- Fix Folds
+vim.cmd("autocmd BufWinEnter * normal zR")
