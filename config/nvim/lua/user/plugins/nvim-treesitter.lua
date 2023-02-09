@@ -15,7 +15,7 @@ nvim_treesitter_configs.setup {
 
   highlight = {
     enable = true,
---    disable = { 'html' } -- default syntax highlighting for HTML works better
+    --    disable = { 'html' } -- default syntax highlighting for HTML works better
   }
 }
 

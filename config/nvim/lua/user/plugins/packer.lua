@@ -39,7 +39,7 @@ return require('packer').startup(function(use)
   use { 'windwp/nvim-ts-autotag' } -- Auto close tags
   use { 'terrortylor/nvim-comment' } -- Easy comment
   use { 'akinsho/bufferline.nvim' } -- Tabline
-  use { 'tiagovla/scope.nvim' } -- Scope buffers and windows to tabs
+  -- use { 'tiagovla/scope.nvim' } -- Scope buffers and windows to tabs
   use { 'nvim-lualine/lualine.nvim' } -- Statusline
   use { 'norcalli/nvim-colorizer.lua' } -- Preview colors
   use { 'lewis6991/gitsigns.nvim' } -- Git Signs

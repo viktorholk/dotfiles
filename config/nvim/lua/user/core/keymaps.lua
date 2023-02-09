@@ -33,5 +33,5 @@ nnoremap('<leader>fs', '<Cmd>Telescope live_grep theme=dropdown<CR>')
 nnoremap('<leader>fb', '<Cmd>Telescope buffers theme=dropdown<CR>')
 
 -- Terminal
-nnoremap('<leader>tt','<Cmd>ToggleTerm<CR>')
-tnoremap('<ESC>', '<C-\\><C-n>') -- Go out terminal mode
+nnoremap('<leader>tt', '<Cmd>ToggleTerm<CR>')
+tnoremap('<C-ESC>', '<C-\\><C-n>') -- Go out terminal mode

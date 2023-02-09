@@ -23,7 +23,7 @@ M.on_attach = function(client, bufnr)
 
   vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true} end, bufopts)
+  vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 M.setup = function()
