@@ -1,9 +1,9 @@
-local M = {}
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local mappings = require('utils.mappings')
 
-local status_cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if not status_cmp_ok then
-  return
-end
+local nnoremap = mappings.nnoremap
+
+local M = {}
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -13,17 +13,20 @@ M.flags = {
   debounce_text_changes = 150
 }
 
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, opts)
+nnoremap('<leader>ld', vim.diagnostic.open_float)
 
 M.on_attach = function(client, bufnr)
+
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-  vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
+  nnoremap('<leader>lg', vim.lsp.buf.definition, bufopts)
+  nnoremap('<leader>lh', vim.lsp.buf.hover, bufopts)
+  nnoremap('<leader>lr', vim.lsp.buf.references, bufopts)
+  nnoremap('<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 M.setup = function()
@@ -54,14 +57,6 @@ M.setup = function()
   }
 
   vim.diagnostic.config(config)
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
 end
 
 return M

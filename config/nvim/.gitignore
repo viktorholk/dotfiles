@@ -1,3 +1,4 @@
-.backup/
-.swap/
-.undo/
+.backup
+.swap
+.undo
+lazy-lock.json
