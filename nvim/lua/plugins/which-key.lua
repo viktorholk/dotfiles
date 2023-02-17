@@ -19,9 +19,8 @@ function M.config()
     e = 'Toggle File Explorer',
     u = 'Toggle Undo Tree',
     w = 'Write Buffer',
-    q = 'Close Buffer',
-    x = 'Quit',
-    t = 'Terminal',
+    q = 'Quit',
+    h = 'Help Tags',
     f = {
       name = 'Telescope',
       f = 'Find Files',

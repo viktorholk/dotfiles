@@ -10,7 +10,7 @@ function M.config()
     diagnostics = {
       enable = true
     },
-    filters = { custom = { "^.git$" } }
+    filters = { dotfiles = true }
   }
 end
 
