@@ -9,7 +9,7 @@ function M.config()
     icons = {
       group = "", -- symbol prepended to a group
     },
-    layout= {
+    layout = {
       align = 'center'
     }
   }
@@ -39,6 +39,7 @@ function M.config()
       r = 'Open References',
       f = 'Format Buffer',
       d = 'Open Diagnostics',
+      s = 'Toggle Diagnostics',
       g = 'Goto Definition'
     }
   }, { prefix = "<leader>" })

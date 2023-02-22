@@ -13,12 +13,9 @@ M.flags = {
   debounce_text_changes = 150
 }
 
-nnoremap('<leader>ld', vim.diagnostic.open_float)
-
 M.on_attach = function(client, bufnr)
-
-  -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -37,14 +34,13 @@ M.setup = function()
   end
 
   local config = {
-    -- Enable virtual text
-    virtual_text = true,
+    virtual_text = false,
     -- show signs
     signs = {
       active = signs,
     },
     update_in_insert = true,
-    underline = true,
+    underline = false,
     severity_sort = true,
     float = {
       focusable = false,

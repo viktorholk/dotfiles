@@ -2,11 +2,11 @@
 local mappings = {}
 
 local function map(mode, lhs, rhs, opts)
-  vim.keymap.set(mode, lhs, rhs, opts, opts or { silent = true })
+  vim.keymap.set(mode, lhs, rhs, opts or { silent = true })
 end
 
 local function noremap(mode, lhs, rhs, opts)
-  vim.keymap.set(mode, lhs, rhs, opts, opts or { noremap = true, silent = true })
+  vim.keymap.set(mode, lhs, rhs, opts or { noremap = true, silent = true })
 end
 
 function mappings.nmap(lhs, rhs, opts) map('n', lhs, rhs, opts) end

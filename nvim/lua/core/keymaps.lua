@@ -1,12 +1,12 @@
 local mappings = require('utils.mappings')
-local nnoremap = mappings.nnoremap
 
+local nnoremap = mappings.nnoremap
 -- Set leader to space
 vim.g.mapleader = ' '
 
 -- General
 nnoremap('<leader>w', '<Cmd>write<CR>') -- Write buffer
-nnoremap('<leader>q', '<Cmd>lua require("utils.buffer-tools").close_buffer()<CR>') -- Smart close
+nnoremap('<leader>q', '<Cmd>lua require("utils.buffer").close()<CR>') -- close current buffer. Hacky way
 
 -- Buffer Navigation
 nnoremap('<S-h>', '<Cmd>bprev<CR>')
@@ -34,3 +34,6 @@ nnoremap('<leader>fhf', '<Cmd>Telescope find_files hidden=true <CR>')
 nnoremap('<leader>fs', '<Cmd>Telescope live_grep <CR>')
 nnoremap('<leader>fb', '<Cmd>Telescope buffers <CR>')
 nnoremap('<leader>h', '<Cmd>Telescope help_tags<CR>')
+
+-- Diagnostics
+nnoremap('<leader>ld', vim.diagnostic.open_float)

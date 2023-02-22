@@ -1,6 +1,6 @@
-local M = {}
+local buffer = {}
 
-function count_bufs_by_type(loaded_only)
+function buffer.close(loaded_only)
   loaded_only = (loaded_only == nil and true or loaded_only)
   local count = { normal = 0, acwrite = 0, help = 0, nofile = 0,
     nowrite = 0, quickfix = 0, terminal = 0, prompt = 0 }
@@ -14,16 +14,13 @@ function count_bufs_by_type(loaded_only)
       count[buftype] = count[buftype] + 1
     end
   end
-  return count
-end
 
-function M.close_buffer()
-  local bufTable = count_bufs_by_type()
-  if (bufTable.normal <= 1) then
-    local result = vim.api.nvim_exec([[:q]], true)
+  if (count.normal <= 1) then
+    vim.api.nvim_exec([[:q]], true)
   else
-    local result = vim.api.nvim_exec([[:bd]], true)
+    vim.api.nvim_exec([[:bd]], true)
   end
 end
 
-return M
+
+return buffer
