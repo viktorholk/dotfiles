@@ -3,4 +3,4 @@
 echo "Bootstrapping ..."
 
 # Node packages
-npm install -g typescript-language-server vscode-langservers-extracted @fsouza/prettierd write-good
+npm install -g typescript-language-server vscode-langservers-extracted @fsouza/prettierd

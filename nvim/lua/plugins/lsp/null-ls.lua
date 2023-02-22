@@ -9,7 +9,6 @@ local sources = {
   b.formatting.prettierd,
 
   -- diagnostics
-  b.diagnostics.write_good,
   b.diagnostics.tsc,
 }
 
