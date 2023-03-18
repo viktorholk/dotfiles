@@ -40,7 +40,8 @@ function M.config()
       f = 'Format Buffer',
       d = 'Open Diagnostics',
       s = 'Toggle Diagnostics',
-      g = 'Goto Definition'
+      g = 'Goto Definition',
+      c = "Code Action"
     }
   }, { prefix = "<leader>" })
 end

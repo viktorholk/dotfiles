@@ -16,13 +16,14 @@ M.flags = {
 M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
+  -- LSP Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
   nnoremap('<leader>lg', vim.lsp.buf.definition, bufopts)
   nnoremap('<leader>lh', vim.lsp.buf.hover, bufopts)
   nnoremap('<leader>lr', vim.lsp.buf.references, bufopts)
+  nnoremap('<leader>lc', vim.lsp.buf.code_action, bufopts)
   nnoremap('<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
