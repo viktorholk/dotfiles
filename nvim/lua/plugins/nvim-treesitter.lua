@@ -8,9 +8,9 @@ function M.config()
     ensure_installed = { "c", "lua", "vim", "help" },
     -- Automatically install missing parsers when entering buffer
     auto_install = true,
-
     highlight = {
       enable = true,
+      disable = { "vue" }
     }
   })
 end

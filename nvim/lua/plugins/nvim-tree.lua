@@ -9,8 +9,7 @@ function M.config()
     },
     diagnostics = {
       enable = true
-    },
-    filters = { dotfiles = true }
+    }
   }
 end
 
