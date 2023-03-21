@@ -24,6 +24,7 @@ nnoremap('<S-j>', '<PageDown>')
 
 -- File explorer
 nnoremap('<leader>e', '<Cmd>NvimTreeToggle<CR>')
+nnoremap('<leader><S-e>', '<Cmd>NvimTreeFindFile<CR>')
 
 -- Undo Tree
 nnoremap('<leader>u', '<Cmd>UndotreeToggle<CR>')
