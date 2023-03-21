@@ -5,6 +5,11 @@ local M = {
 function M.config()
   require('toggleterm').setup {
     open_mapping = [[<c-t>]],
+    direction = 'float',
+    float_opts = {
+      border = 'single',
+      height = 30
+    }
   }
 end
 
