@@ -8,7 +8,7 @@ function M.config()
     direction = 'float',
     float_opts = {
       border = 'single',
-      height = 30
+      height = 50
     }
   }
 end

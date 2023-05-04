@@ -39,9 +39,12 @@ function M.config()
       r = 'Open References',
       f = 'Format Buffer',
       d = 'Open Diagnostics',
-      s = 'Toggle Diagnostics',
       g = 'Goto Definition',
       c = "Code Action"
+    },
+    o = {
+      name = 'Options',
+      r = 'Toggle Relative Line Numbers'
     }
   }, { prefix = "<leader>" })
 end

@@ -36,5 +36,9 @@ nnoremap('<leader>fs', '<Cmd>Telescope live_grep <CR>')
 nnoremap('<leader>fb', '<Cmd>Telescope buffers <CR>')
 nnoremap('<leader>h', '<Cmd>Telescope help_tags<CR>')
 
+
+-- Options
+nnoremap('<leader>or', '<Cmd>set relativenumber!<CR>')
+
 -- Diagnostics
 nnoremap('<leader>ld', vim.diagnostic.open_float)

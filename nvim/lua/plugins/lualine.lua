@@ -13,6 +13,13 @@ function M.config()
       disabled_filetypes = {
         'NvimTree'
       }
+    },
+    sections = {
+      lualine_c = { { 'filename', path = 1 } },
+    },
+    inactive_sections = {
+      lualine_b = { 'diff', 'diagnostics' },
+      lualine_c = { { 'filename', path = 1 } },
     }
   }
 end
