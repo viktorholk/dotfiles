@@ -11,7 +11,6 @@ local servers = {
   'eslint',
   'vuels',
   'solargraph',
-  'rust_analyzer'
 }
 
 mason.setup {

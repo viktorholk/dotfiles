@@ -7,5 +7,6 @@ return {
   { 'goolord/alpha-nvim', config = function() require 'alpha'.setup(require 'alpha.themes.startify'.config) end },
   { 'kyazdani42/nvim-web-devicons', config = true },
   { 'windwp/nvim-autopairs', config = true },
+  { 'xiyaowong/transparent.nvim', config = true },
   { 'mbbill/undotree' },
 }

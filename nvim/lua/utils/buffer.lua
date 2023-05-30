@@ -25,7 +25,7 @@ function buffer.close(loaded_only)
   if (count.normal <= 1) then
     vim.api.nvim_exec([[:q]], true)
   else
-    vim.api.nvim_exec([[:bd]], true)
+    vim.api.nvim_exec([[:bp | sp | bn | bd]], true)
   end
 end
 

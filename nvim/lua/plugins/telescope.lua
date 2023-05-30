@@ -5,10 +5,24 @@ local M = {
   }
 }
 
-
 function M.config()
   local telescope = require('telescope')
   telescope.setup {
+    defaults = {
+      -- Better performance settings
+      preview = {
+        treesitter = false,
+      },
+      vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+      }
+    },
     pickers = {
       find_files = {
         theme = 'ivy'

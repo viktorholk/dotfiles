@@ -5,7 +5,7 @@ local M = {
 
 function M.config()
   require('nvim-treesitter.configs').setup({
-    ensure_installed = { "c", "lua", "vim", "help" },
+    ensure_installed = { "c", "lua", "vim", "vimdoc" },
     -- Automatically install missing parsers when entering buffer
     auto_install = true,
     highlight = {
