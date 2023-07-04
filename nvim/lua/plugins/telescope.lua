@@ -9,6 +9,7 @@ function M.config()
   local telescope = require('telescope')
   telescope.setup {
     defaults = {
+      file_ignore_patterns = { "node_modules" },
       -- Better performance settings
       preview = {
         treesitter = false,
