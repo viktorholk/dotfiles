@@ -5,7 +5,7 @@ local M = {
 function M.config()
   require('nvim-tree').setup {
     view = {
-      width = 50
+      width = 35
     },
     diagnostics = {
       enable = true
