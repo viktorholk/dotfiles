@@ -17,13 +17,18 @@ function M.config()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
 
-  -- Setup Luasnip
-  require("luasnip.loaders.from_vscode").lazy_load()
-  luasnip.filetype_extend("javascript", { "javascriptreact" })
-  luasnip.filetype_extend("javascript", { "html" })
-  luasnip.config.set_config({
-    history = false
+  luasnip.setup({
+    region_check_events = "CursorHold,InsertLeave",
+    -- those are for removing deleted snippets, also a common problem
+    delete_check_events = "TextChanged,InsertEnter",
   })
+
+  -- Setup Luasnip
+  --luasnip.filetype_extend("javascript", { "javascriptreact" })
+  luasnip.filetype_extend("javascriptreact", { "html" })
+  luasnip.filetype_extend("typescriptreact", { "html" })
+
+  require("luasnip.loaders.from_vscode").lazy_load()
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -38,7 +43,7 @@ function M.config()
       end,
     },
     mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-b>'] = cmp.mapping.scroll_docs( -4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
@@ -58,8 +63,8 @@ function M.config()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+        elseif luasnip.jumpable( -1) then
+          luasnip.jump( -1)
         else
           fallback()
         end

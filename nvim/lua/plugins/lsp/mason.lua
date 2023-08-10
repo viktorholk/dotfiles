@@ -11,6 +11,7 @@ local servers = {
   'eslint',
   'vuels',
   'solargraph',
+  'jedi_language_server' -- python
 }
 
 mason.setup {

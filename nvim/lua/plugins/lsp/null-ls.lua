@@ -7,9 +7,12 @@ local b = nls.builtins
 local sources = {
   -- formatting
   b.formatting.prettierd,
+  b.formatting.isort,
+  b.formatting.autopep8,
 
   -- diagnostics
   b.diagnostics.tsc,
+  b.diagnostics.flake8,
 }
 
 function M.setup()
