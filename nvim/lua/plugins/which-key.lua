@@ -17,7 +17,6 @@ function M.config()
   -- Add labels to keybindings
   which_key.register({
     e = 'Toggle File Explorer',
-    u = 'Toggle Undo Tree',
     w = 'Write Buffer',
     q = 'Quit',
     h = 'Help Tags',

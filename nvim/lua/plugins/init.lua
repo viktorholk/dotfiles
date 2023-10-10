@@ -1,12 +1,10 @@
 return {
 
   { 'nvim-lua/plenary.nvim' },
-  { 'folke/neodev.nvim', config = true }, -- Better Lua LSP for Neovim configuation
+  { 'folke/neodev.nvim',            config = true }, -- Better Lua LSP for Neovim configuation
 
-  { 'rebelot/kanagawa.nvim', lazy = false, config = function() vim.cmd([[colorscheme kanagawa]]) end },
-  { 'goolord/alpha-nvim', config = function() require 'alpha'.setup(require 'alpha.themes.startify'.config) end },
   { 'kyazdani42/nvim-web-devicons', config = true },
-  { 'windwp/nvim-autopairs', config = true },
-  { 'xiyaowong/transparent.nvim', config = true },
-  { 'mbbill/undotree' },
+  { 'windwp/nvim-autopairs',        config = true },
+  { 'rebelot/kanagawa.nvim',        config = function() vim.cmd([[colorscheme kanagawa]]) end },
+  { 'goolord/alpha-nvim',           config = function() require 'alpha'.setup(require 'alpha.themes.startify'.config) end },
 }

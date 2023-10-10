@@ -1,12 +1,13 @@
 local mappings = require('utils.mappings')
 
 local nnoremap = mappings.nnoremap
+
 -- Set leader to space
 vim.g.mapleader = ' '
 
 -- General
 nnoremap('<leader>w', '<Cmd>write<CR>') -- Write buffer
-nnoremap('<leader>q', '<Cmd>lua require("utils.buffer").close()<CR>') -- close current buffer. Hacky way
+nnoremap('<leader>q', '<Cmd>bd | bp<CR>') -- Close buffer
 
 -- Buffer Navigation
 nnoremap('<S-h>', '<Cmd>bprev<CR>')
