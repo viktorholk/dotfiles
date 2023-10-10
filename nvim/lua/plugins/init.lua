@@ -7,4 +7,6 @@ return {
   { 'windwp/nvim-autopairs',        config = true },
   { 'rebelot/kanagawa.nvim',        config = function() vim.cmd([[colorscheme kanagawa]]) end },
   { 'goolord/alpha-nvim',           config = function() require 'alpha'.setup(require 'alpha.themes.startify'.config) end },
+  { 'zbirenbaum/copilot.lua',       config = true },
+  { 'zbirenbaum/copilot-cmp',       config = true }
 }
