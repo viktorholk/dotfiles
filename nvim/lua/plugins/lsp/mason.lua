@@ -9,7 +9,7 @@ local servers = {
   'jsonls',
   'tsserver',
   'eslint',
-  'vuels',
+  'volar',
   'solargraph',
   'jedi_language_server' -- python
 }
