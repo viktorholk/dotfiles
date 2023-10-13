@@ -3,11 +3,17 @@ local M = {
 }
 
 function M.config()
-  require('nvim-tree').setup {
+  require('nvim-tree').setup({
+    sort = {
+      sorter = "case_sensitive",
+    },
     view = {
-      width = 35
-    }
-  }
+      width = 30,
+    },
+    renderer = {
+      group_empty = true,
+    },
+  })
 end
 
 return M

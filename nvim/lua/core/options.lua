@@ -2,7 +2,7 @@
 vim.opt.cmdheight     = 1
 vim.opt.pumheight     = 10
 vim.opt.showmode      = false
-vim.opt.showtabline   = 2 -- Always show tabline
+vim.opt.showtabline   = 2    -- Always show tabline
 vim.opt.title         = true
 vim.opt.termguicolors = true -- Use true colors, required for some plugins
 vim.wo.number         = true
@@ -32,16 +32,16 @@ vim.opt.completeopt   = { 'menuone', 'noselect' } -- For nvim-cmp
 vim.opt.undofile      = true
 
 -- Vim specific
-vim.opt.fileencoding = 'utf-8'
-vim.opt.backup       = true
+vim.opt.fileencoding  = 'utf-8'
+vim.opt.backup        = true
 
-local path           = vim.fn.stdpath('config')
-vim.opt.backupdir    = path .. '/.backup//'
-vim.opt.directory    = path .. '/.swap//'
-vim.opt.undodir      = path .. '/.undo//'
+local path            = vim.fn.stdpath('config')
+vim.opt.backupdir     = path .. '/.backup//'
+vim.opt.directory     = path .. '/.swap//'
+vim.opt.undodir       = path .. '/.undo//'
 
-vim.opt.hidden       = true -- Do not save when switching buffers
-vim.opt.updatetime   = 100
-vim.opt.timeoutlen   = 250
+vim.opt.hidden        = true -- Do not save when switching buffers
+vim.opt.updatetime    = 100
+vim.opt.timeoutlen    = 250
 
 vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber")

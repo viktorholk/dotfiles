@@ -1,7 +1,7 @@
 require('core')
 
 require('lazy').setup('plugins', {
-  change_directory = {
-    notify = false
+  change_detection = {
+    notify = false,
   }
 })
