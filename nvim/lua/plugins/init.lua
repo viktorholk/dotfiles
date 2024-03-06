@@ -10,5 +10,7 @@ return {
     end
   },
   { 'kyazdani42/nvim-web-devicons', config = true },
-  { 'windwp/nvim-autopairs',        event = "InsertEnter", config = true },
+  { 'windwp/nvim-autopairs',        config = true,      event = "InsertEnter" },
+
+  { 'ThePrimeagen/harpoon',         branch = 'harpoon2' },
 }
