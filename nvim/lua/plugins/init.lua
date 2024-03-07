@@ -6,11 +6,12 @@ return {
   {
     'rebelot/kanagawa.nvim',
     config = function()
-      vim.cmd([[colorscheme kanagawa]])
+      vim.cmd([[colorscheme kanagawa-dragon]])
     end
   },
   { 'kyazdani42/nvim-web-devicons', config = true },
   { 'windwp/nvim-autopairs',        config = true,      event = "InsertEnter" },
 
-  { 'ThePrimeagen/harpoon',         branch = 'harpoon2' },
+  { 'ThePrimeagen/harpoon',         branch = 'harpoon2' }
+
 }
