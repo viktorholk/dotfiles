@@ -44,7 +44,22 @@ function M.config()
     o = {
       name = 'Options',
       r = 'Toggle Relative Line Numbers'
+    },
+    g = {
+      name = 'GitSigns',
+      n = 'Next Hunk',
+      p = 'Previous Hunk',
+      s = 'Stage Hunk',
+      u = 'Undo Stage Hunk',
+      r = {
+        name = 'Reset',
+        h = 'Reset Hunk',
+        b = 'Reset Buffer'
+      },
+      b = 'Stage Buffer',
+      h = 'Preview Hunk'
     }
+
   }, { prefix = "<leader>" })
 end
 
