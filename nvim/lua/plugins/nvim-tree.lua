@@ -8,7 +8,7 @@ function M.config()
       sorter = "case_sensitive",
     },
     view = {
-      width = 30,
+      width = 45,
     },
     renderer = {
       group_empty = true,
