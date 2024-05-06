@@ -13,6 +13,9 @@ function M.config()
     renderer = {
       group_empty = true,
     },
+    filters = {
+      exclude = { '.env' }
+    }
   })
 end
 
