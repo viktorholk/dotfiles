@@ -9,7 +9,6 @@ vim.wo.number         = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn     = 'yes'
 vim.wo.cursorline     = true
-
 -- Behaviour
 vim.opt.hlsearch      = false
 vim.opt.ignorecase    = true -- Ignore case when using lowercase in search
@@ -30,6 +29,7 @@ vim.opt.mouse         = 'a'
 vim.opt.clipboard     = 'unnamedplus'
 vim.opt.completeopt   = { 'menuone', 'noselect' } -- For nvim-cmp
 vim.opt.undofile      = true
+vim.opt.guicursor     = "i:block-blinkwait1000-blinkon500-blinkoff500";
 
 -- Vim specific
 vim.opt.fileencoding  = 'utf-8'

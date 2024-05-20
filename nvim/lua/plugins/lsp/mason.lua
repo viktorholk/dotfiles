@@ -11,7 +11,7 @@ local servers = {
   'eslint',
   'volar',
   'solargraph',
-  'jedi_language_server' -- python
+  'rust_analyzer'
 }
 
 mason.setup {
