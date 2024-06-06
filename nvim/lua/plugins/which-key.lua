@@ -25,12 +25,6 @@ function M.config()
       f = 'Find Files',
       s = 'Search in Files',
       b = 'Find Buffers',
-      h = {
-        name = 'Hidden',
-        f = {
-          'Find Files'
-        }
-      }
     },
     l = {
       name = 'LSP',
