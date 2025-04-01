@@ -32,6 +32,7 @@ nnoremap('<leader>u', '<Cmd>UndotreeToggle<CR>')
 
 -- Telescope
 nnoremap('<leader>ff', '<Cmd>Telescope find_files <CR>')
+-- nnoremap('<leader>fhf', '<Cmd>Telescope find_files hidden=true <CR>') -- Removed as hidden=true is now default for find_files
 nnoremap('<leader>fs', '<Cmd>Telescope live_grep <CR>')
 nnoremap('<leader>fb', '<Cmd>Telescope buffers <CR>')
 nnoremap('<leader>h', '<Cmd>Telescope help_tags<CR>')

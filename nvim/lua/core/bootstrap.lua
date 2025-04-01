@@ -1,5 +1,5 @@
 -- pin nvim to a specific node version, regardless of the project
-local node_bin = "/Users/viktorholk/.nvm/versions/node/v18.20.1/bin"
+local node_bin = "/Users/viktorholk/.nvm/versions/node/v20.17.0/bin"
 vim.g.node_host_prog = node_bin .. "/node"
 
 -- for mason.nvim

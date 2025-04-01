@@ -7,7 +7,7 @@ local servers = {
   'html',
   'cssls',
   'jsonls',
-  'tsserver',
+  'ts_ls',
   'eslint',
   'volar',
   'solargraph',

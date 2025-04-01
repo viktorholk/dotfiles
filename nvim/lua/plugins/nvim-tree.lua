@@ -4,6 +4,9 @@ local M = {
 
 function M.config()
   require('nvim-tree').setup({
+    diagnostics = {
+      enable = true,
+    },
     sort = {
       sorter = "case_sensitive",
     },
