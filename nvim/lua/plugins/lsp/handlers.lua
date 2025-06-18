@@ -17,14 +17,12 @@ M.on_attach = function(_client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- LSP Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    nnoremap('<leader>lg', vim.lsp.buf.definition, bufopts)
-    nnoremap('<leader>lh', vim.lsp.buf.hover, bufopts)
-    nnoremap('<leader>lr', vim.lsp.buf.references, bufopts)
-    nnoremap('<leader>lc', vim.lsp.buf.code_action, bufopts)
-    nnoremap('<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
+    local opts = { silent = true, buffer = bufnr }
+    vim.keymap.set("n", "<leader>lg", vim.lsp.buf.definition, { desc = "Go to Definition", silent = true, buffer = bufnr })
+    vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover", silent = true, buffer = bufnr })
+    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { desc = "Find References", silent = true, buffer = bufnr })
+    vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, { desc = "Code Action", silent = true, buffer = bufnr })
+    vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format", silent = true, buffer = bufnr })
 end
 
 M.setup = function()

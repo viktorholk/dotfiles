@@ -9,7 +9,6 @@ local servers = {
   'jsonls',
   'ts_ls',
   'eslint',
-  'volar',
   'solargraph',
   'rust_analyzer'
 }
@@ -26,21 +25,20 @@ mason.setup {
 }
 
 mason_lspconfig.setup {
+  automatic_enable = false,
   ensure_installed = servers
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    local opts = {
-      on_attach    = require("plugins.lsp.handlers").on_attach,
-      capabilities = require("plugins.lsp.handlers").capabilities,
-    }
+for _, server_name in ipairs(servers) do
+  local opts = {
+    on_attach = require("plugins.lsp.handlers").on_attach,
+    capabilities = require("plugins.lsp.handlers").capabilities,
+  }
 
-    local require_ok, server = pcall(require, "plugins.lsp.settings." .. server_name)
-    if require_ok then
-      opts = vim.tbl_deep_extend("force", server, opts)
-    end
-
-    lspconfig[server_name].setup(opts)
+  local require_ok, server = pcall(require, "plugins.lsp.settings." .. server_name)
+  if require_ok then
+    opts = vim.tbl_deep_extend("force", server, opts)
   end
-}
+
+  lspconfig[server_name].setup(opts)
+end
