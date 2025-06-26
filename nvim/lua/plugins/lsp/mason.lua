@@ -8,9 +8,12 @@ local servers = {
   'cssls',
   'jsonls',
   'ts_ls',
+  'volar',
+  'tailwindcss',
   'eslint',
   'solargraph',
-  'rust_analyzer'
+  'rust_analyzer',
+  'omnisharp'
 }
 
 mason.setup {
