@@ -3,18 +3,17 @@ return {
   event = "VimEnter",
   keys = {
     -- Harpoon
-    { "<leader>a",     group = "Harpoon" },
-    { "<leader>aa",    function() require("harpoon"):list():add() end,                                 desc = "Add File" },
-    { "<leader>am",    function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Toggle Menu" },
-    { "<leader>a1",    function() require("harpoon"):list():select(1) end,                                desc = "Go to file 1" },
-    { "<leader>a2",    function() require("harpoon"):list():select(2) end,                                desc = "Go to file 2" },
-    { "<leader>a3",    function() require("harpoon"):list():select(3) end,                                desc = "Go to file 3" },
-    { "<leader>a4",    function() require("harpoon"):list():select(4) end,                                desc = "Go to file 4" },
+    { "<leader>z",     group = "Harpoon" },
+    { "<leader>za",    function() require("harpoon"):list():add() end,                                    desc = "Add File" },
+    { "<leader>zm",    function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Toggle Menu" },
+    { "<leader>z1",    function() require("harpoon"):list():select(1) end,                                desc = "Go to file 1" },
+    { "<leader>z2",    function() require("harpoon"):list():select(2) end,                                desc = "Go to file 2" },
+    { "<leader>z3",    function() require("harpoon"):list():select(3) end,                                desc = "Go to file 3" },
+    { "<leader>z4",    function() require("harpoon"):list():select(4) end,                                desc = "Go to file 4" },
 
     -- Session
-    { "<leader>s",     group = "Session" },
-    { "<leader>sw",    "<cmd>w<cr>",                                                                      desc = "Write" },
-    { "<leader>sq",    "<cmd>q<cr>",                                                                      desc = "Quit" },
+    { "<leader>w",    "<cmd>w<cr>",                                                                      desc = "Write" },
+    { "<leader>q",    "<cmd>q<cr>",                                                                      desc = "Quit" },
 
     -- General
     { "<leader>u",     "<Cmd>UndotreeToggle<CR>",                                                         desc = "Undo Tree" },
@@ -54,4 +53,3 @@ return {
     { "<leader>tv",    "<cmd>ToggleTerm direction=vertical<CR>",                                          desc = "Vertical" },
   },
 }
-

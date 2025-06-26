@@ -2,7 +2,8 @@
 vim.opt.cmdheight     = 1
 vim.opt.pumheight     = 10
 vim.opt.showmode      = false
-vim.opt.showtabline   = 2    -- Always show tabline
+vim.opt.showtabline   = 2 -- Always show tabline
+vim.opt.laststatus    = 3
 vim.opt.title         = true
 vim.opt.termguicolors = true -- Use true colors, required for some plugins
 vim.wo.number         = true
