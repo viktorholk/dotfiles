@@ -7,18 +7,21 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "openai",
+    provider = "copilot",
+    cursor_applying_provider = "copilot",
+    mode = "agentic",
     providers = {
-      openai = {
-        endpoint = "https://api.openai.com/v1",
-        model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
-        extra_request_body = {
-          temperature = 0.75,
-          max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-          --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-        },
+      copilot = {
+        endpoint = "https://api.githubcopilot.com",
+        model = "gpt-4.1",
+        timeout = 30000,
       },
     },
+    behaviour = {
+      auto_suggestions = false,
+      enable_cursor_planning_mode = true
+    },
+    suggestion = { debounce = 500 },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -35,6 +38,7 @@ return {
     "stevearc/dressing.nvim",        -- for input provider dressing
     "folke/snacks.nvim",             -- for input provider snacks
     "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+    "zbirenbaum/copilot.lua",        -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
