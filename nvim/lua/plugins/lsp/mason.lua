@@ -8,7 +8,6 @@ local servers = {
   'cssls',
   'jsonls',
   'ts_ls',
-  'volar',
   'tailwindcss',
   'eslint',
   'solargraph',
@@ -28,8 +27,7 @@ mason.setup {
 }
 
 mason_lspconfig.setup {
-  automatic_enable = false,
-  ensure_installed = servers
+  automatic_enable = false
 }
 
 for _, server_name in ipairs(servers) do
