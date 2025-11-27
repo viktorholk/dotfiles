@@ -44,5 +44,6 @@ vim.opt.undodir       = path .. '/.undo//'
 vim.opt.hidden        = true -- Do not save when switching buffers
 vim.opt.updatetime    = 100
 vim.opt.timeoutlen    = 250
+vim.o.backupcopy      = 'yes'
 
 vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber")

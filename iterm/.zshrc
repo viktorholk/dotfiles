@@ -150,3 +150,10 @@ eval "$(rbenv init - --no-rehash bash)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export SSL_CERT_FILE=~/cert.pem
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+
+# bun completions
+[ -s "/Users/viktorholk/.bun/_bun" ] && source "/Users/viktorholk/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
