@@ -1,8 +1,8 @@
 local M = {
-  'neovim/nvim-lspconfig', -- Enable LSP
+  "mason-org/mason-lspconfig.nvim",
   dependencies = {
-    'williamboman/mason.nvim', -- LSP Installer
-    'williamboman/mason-lspconfig.nvim', -- LSP configuration
+    { "mason-org/mason.nvim", opts = {} },
+    'neovim/nvim-lspconfig',
     'stevearc/conform.nvim' -- Formatter
   }
 }

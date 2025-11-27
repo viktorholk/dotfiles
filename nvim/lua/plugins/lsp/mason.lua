@@ -1,6 +1,5 @@
 local mason = require('mason')
 local mason_lspconfig = require('mason-lspconfig')
-local lspconfig = require('lspconfig')
 
 local servers = {
   'lua_ls',
@@ -34,6 +33,7 @@ for _, server_name in ipairs(servers) do
   local opts = {
     on_attach = require("plugins.lsp.handlers").on_attach,
     capabilities = require("plugins.lsp.handlers").capabilities,
+    flags = { debounce_text_changes = 300 }
   }
 
   local require_ok, server = pcall(require, "plugins.lsp.settings." .. server_name)
@@ -41,5 +41,7 @@ for _, server_name in ipairs(servers) do
     opts = vim.tbl_deep_extend("force", server, opts)
   end
 
-  lspconfig[server_name].setup(opts)
+  --vim.lsp.config(server_name, opts)
+  --vim.lsp.enable({ server_name })
+  require('lspconfig')[server_name].setup(opts)
 end
