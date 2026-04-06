@@ -15,9 +15,8 @@ M.flags = {
 
 M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = true
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- LSP Mappings.
+  -- LSP Mappings
   local opts = { silent = true, buffer = bufnr }
   vim.keymap.set("n", "<leader>lg", vim.lsp.buf.definition, { desc = "Go to Definition", silent = true, buffer = bufnr })
   vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover", silent = true, buffer = bufnr })

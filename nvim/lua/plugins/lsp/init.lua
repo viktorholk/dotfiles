@@ -1,10 +1,8 @@
 local M = {
-  "mason-org/mason-lspconfig.nvim",
+  "mason-org/mason.nvim",
   dependencies = {
-    { "mason-org/mason.nvim", opts = {} },
-    'neovim/nvim-lspconfig',
-    'stevearc/conform.nvim' -- Formatter
-  }
+    'stevearc/conform.nvim',
+  },
 }
 
 function M.config()
