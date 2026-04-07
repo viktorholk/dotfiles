@@ -25,7 +25,6 @@ vim.lsp.config('*', {
 -- Per-server overrides
 vim.lsp.config("lua_ls", require("plugins.lsp.settings.lua_ls"))
 vim.lsp.config("ts_ls", require("plugins.lsp.settings.ts_ls"))
-vim.lsp.config("solargraph", require("plugins.lsp.settings.solargraph"))
 vim.lsp.config("roslyn", require("plugins.lsp.settings.roslyn"))
 
 -- Enable all servers
@@ -37,6 +36,5 @@ vim.lsp.enable({
   'ts_ls',
   'tailwindcss',
   'eslint',
-  'solargraph',
   'rust_analyzer',
 })
