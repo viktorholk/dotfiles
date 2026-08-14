@@ -1,8 +1,3 @@
-local mappings = require('utils.mappings')
-
-local nnoremap = mappings.nnoremap
-
-
 local M = {
   'lewis6991/gitsigns.nvim',
 }
@@ -13,8 +8,6 @@ function M.config()
       virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
     },
     current_line_blame = true,
-    on_attach = function()
-    end
   })
 end
 

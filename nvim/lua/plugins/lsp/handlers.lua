@@ -1,7 +1,4 @@
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local mappings = require('utils.mappings')
-
-local nnoremap = mappings.nnoremap
 
 local M = {}
 
@@ -9,27 +6,29 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-M.flags = {
-  debounce_text_changes = 150
-}
-
-M.on_attach = function(client, bufnr)
-  client.server_capabilities.documentFormattingProvider = true
-
-  -- LSP Mappings
-  local opts = { silent = true, buffer = bufnr }
-  vim.keymap.set("n", "<leader>lg", vim.lsp.buf.definition, { desc = "Go to Definition", silent = true, buffer = bufnr })
-  vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover", silent = true, buffer = bufnr })
-  vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { desc = "Find References", silent = true, buffer = bufnr })
-  vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, { desc = "Code Action", silent = true, buffer = bufnr })
-vim.keymap.set("n", "<leader>lf", function()
-  require("conform").format({ async = true })
-end, { desc = "Format", silent = true, buffer = bufnr })
-
-end
-
 M.setup = function()
+  local lsp_mappings = vim.api.nvim_create_augroup("LspMappings", { clear = true })
+
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = lsp_mappings,
+    callback = function(event)
+      local function map(lhs, rhs, desc)
+        vim.keymap.set("n", lhs, rhs, {
+          buffer = event.buf,
+          desc = desc,
+          silent = true,
+        })
+      end
+
+      map("<leader>lg", vim.lsp.buf.definition, "Go to Definition")
+      map("<leader>lh", vim.lsp.buf.hover, "Hover")
+      map("<leader>lr", vim.lsp.buf.references, "Find References")
+      map("<leader>lc", vim.lsp.buf.code_action, "Code Action")
+    end,
+  })
+
   vim.diagnostic.config({
+    virtual_text = false,
     signs = {
       text = {
         [vim.diagnostic.severity.ERROR] = " ",
@@ -37,26 +36,6 @@ M.setup = function()
         [vim.diagnostic.severity.INFO] = "󰋼 ",
         [vim.diagnostic.severity.HINT] = "󰌵 ",
       },
-      texthl = {
-        [vim.diagnostic.severity.ERROR] = "Error",
-        [vim.diagnostic.severity.WARN] = "Error",
-        [vim.diagnostic.severity.HINT] = "Hint",
-        [vim.diagnostic.severity.INFO] = "Info",
-      },
-      numhl = {
-        [vim.diagnostic.severity.ERROR] = "",
-        [vim.diagnostic.severity.WARN] = "",
-        [vim.diagnostic.severity.HINT] = "",
-        [vim.diagnostic.severity.INFO] = "",
-      },
-    },
-  })
-
-  local config = {
-    virtual_text = false,
-    -- show signs
-    signs = {
-      active = signs,
     },
     update_in_insert = true,
     underline = false,
@@ -69,9 +48,7 @@ M.setup = function()
       header = "",
       prefix = "",
     },
-  }
-
-  vim.diagnostic.config(config)
+  })
 end
 
 return M

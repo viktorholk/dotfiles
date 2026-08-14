@@ -15,9 +15,6 @@ return {
     { "<leader>w",    "<cmd>w<cr>",                                                                      desc = "Write" },
     { "<leader>q",    "<cmd>q<cr>",                                                                      desc = "Quit" },
 
-    -- General
-    { "<leader>u",     "<Cmd>UndotreeToggle<CR>",                                                         desc = "Undo Tree" },
-
     -- File & Telescope
     { "<leader>f",     group = "File" },
     { "<leader>ff",    "<Cmd>Telescope find_files<CR>",                                                   desc = "Find File" },
@@ -41,6 +38,7 @@ return {
     -- LSP
     { "<leader>l",     group = "LSP" },
     { "<leader>ld",    function() vim.diagnostic.open_float() end,                                        desc = "Diagnostics" },
+    { "<leader>lf",    function() require("conform").format({ async = true }) end,                         desc = "Format" },
 
     -- Options
     { "<leader>o",     group = "Options" },
