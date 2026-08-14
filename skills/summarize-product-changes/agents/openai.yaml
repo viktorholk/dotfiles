@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Change Summary"
+  short_description: "Brief product-facing change summaries"
+  default_prompt: "Use $summarize-product-changes to write a brief product-facing summary of the current git changes."
