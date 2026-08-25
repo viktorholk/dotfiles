@@ -17,7 +17,8 @@ function M.config()
       group_empty = true,
     },
     filters = {
-      exclude = { '.env' }
+      git_ignored = false,
+      exclude = { '.env' },
     }
   })
 end
