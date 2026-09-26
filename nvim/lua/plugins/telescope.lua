@@ -31,7 +31,7 @@ function M.config()
                 hidden = true,
                 find_command = {
                     "sh", "-c",
-                    'fd --type f --hidden --exclude .git --exclude node_modules . ; fd --type f --hidden --no-ignore --glob ".env" .'
+                    '(fd --type f --hidden --strip-cwd-prefix --exclude .git --exclude node_modules --exclude vendor --exclude .venv --exclude dist --exclude build --exclude target --exclude .next; fd --type f --hidden --no-ignore --glob ".env" --strip-cwd-prefix --exclude .git --exclude node_modules --exclude vendor --exclude .venv --exclude dist --exclude build --exclude target --exclude .next) | sort -u'
                 }
             },
             live_grep = {

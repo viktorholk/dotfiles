@@ -1,6 +1,6 @@
 # Dotfiles
 
-Neovim configuration for macOS and Linux. Requires Neovim 0.11 or newer.
+Neovim configuration for macOS and Linux. Requires Neovim 0.12 or newer.
 
 ## Screenshots
 
@@ -11,12 +11,12 @@ Neovim configuration for macOS and Linux. Requires Neovim 0.11 or newer.
 
 ```sh
 xcode-select --install
-brew install neovim git ripgrep fd
+brew install neovim git ripgrep fd tree-sitter-cli
 ```
 
 ## Linux Mint / Ubuntu
 
-Install Neovim 0.11 or newer, then:
+Install Neovim 0.12 or newer, then:
 
 ```sh
 sudo apt install git ripgrep fd-find xclip build-essential
@@ -26,22 +26,45 @@ ln -s "$(command -v fdfind)" "$HOME/.local/bin/fd"
 
 Make sure `~/.local/bin` is on your `PATH`. On Wayland, use `wl-clipboard` instead of `xclip`.
 
+Tree-sitter parser installation also requires the `tree-sitter` CLI version 0.26.1 or newer. Check with `tree-sitter --version`; the version in Ubuntu or Mint repositories may be too old. If needed, install a current CLI from the [official releases](https://github.com/tree-sitter/tree-sitter/releases) into a directory on your `PATH`. Avoid the npm package for this setup.
+
 ## Link and start
 
 ```sh
 git clone https://github.com/viktorholk/dotfiles.git "$HOME/.dotfiles"
-mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/ghostty"
 ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
+ln -s "$HOME/.dotfiles/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
 nvim
 ```
 
-If `~/.config/nvim` already exists, move it aside before creating the link. If you clone elsewhere, use that path in the link. Plugins install on first launch; use `:Mason` to install language servers and formatters for the languages you use. A Nerd Font enables the UI icons.
+If either link destination already exists, move it aside before creating the link. If you clone elsewhere, use that path in the links. On macOS, Ghostty also reads `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty` after the XDG config; move that file aside if it overrides this config. Plugins install on first launch; use `:Mason` to install language servers and formatters for the languages you use.
+
+## Ghostty font
+
+The repo includes the regular **JetBrainsMono Nerd Font Mono** in `iterm/JetBrains Mono Regular Nerd Font Complete Mono.ttf`. Install it for your user before starting Ghostty. The linked Ghostty config selects this font at size 12; it also enables Neovim's Nerd Font icons.
+
+On macOS:
+
+```sh
+mkdir -p "$HOME/Library/Fonts"
+cp "$HOME/.dotfiles/iterm/JetBrains Mono Regular Nerd Font Complete Mono.ttf" "$HOME/Library/Fonts/"
+```
+
+On Linux:
+
+```sh
+install -Dm644 "$HOME/.dotfiles/iterm/JetBrains Mono Regular Nerd Font Complete Mono.ttf" "$HOME/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
+fc-cache -f "$HOME/.local/share/fonts"
+```
+
+Restart Ghostty after installing the font. After later config edits, reload it with `Ctrl+Shift+,` on Linux or `Cmd+Shift+,` on macOS.
 
 ## Using the config
 
-- Telescope finds files with `fd` and searches text with `ripgrep`. File search includes hidden files and `.env` files.
-- LSP, completion, snippets, Tree-sitter, Git signs, Harpoon, and a terminal are configured. Install language tools as needed with `:Mason`; web language servers also need Node, and Roslyn needs the .NET SDK.
-- Conform uses Biome for JavaScript, TypeScript, and JSON, RuboCop for Ruby, and an attached LSP formatter for other files. Use `:ConformInfo` to check formatting.
+- Telescope finds files with `fd` and searches text with `ripgrep`. File search includes hidden files and ignored `.env` files in project directories, but skips dependency and build directories.
+- LSP, completion, snippets, Tree-sitter, Git signs, Harpoon, and a terminal are configured. Tree-sitter installs missing supported parsers when you open a file, provided the CLI is installed. Install language tools as needed with `:Mason`; web language servers also need Node. C# requires the .NET SDK and `:MasonInstall roslyn` from the configured custom registry.
+- Conform formats on request with `Space lf`: Biome for JavaScript, TypeScript, and JSON; RuboCop's safe auto-corrections for Ruby; and an attached LSP formatter for other files. Use `:ConformInfo` to check formatting.
 - Run `:checkhealth` if something is not working. Plugin versions are recorded in `nvim/lazy-lock.json`; use `:Lazy restore` to return to them.
 
 ## Keymaps

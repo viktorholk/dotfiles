@@ -13,13 +13,6 @@ function M.setup()
       json = { "biome" },
       ruby = { "rubocop" },
     },
-    formatters = {
-      rubocop = {
-        command = "rubocop",
-        args = { "--auto-correct-all", "--stdin", "$FILENAME" },
-        stdin = true,
-      },
-    },
   })
 end
 

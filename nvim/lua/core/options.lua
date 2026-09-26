@@ -36,10 +36,13 @@ vim.opt.guicursor     = "i:block-blinkwait1000-blinkon500-blinkoff500";
 vim.opt.fileencoding  = 'utf-8'
 vim.opt.backup        = true
 
-local path            = vim.fn.stdpath('config')
-vim.opt.backupdir     = path .. '/.backup//'
-vim.opt.directory     = path .. '/.swap//'
-vim.opt.undodir       = path .. '/.undo//'
+local state = vim.fn.stdpath('state')
+for _, dir in ipairs({ 'backup', 'swap', 'undo' }) do
+  vim.fn.mkdir(state .. '/' .. dir, 'p')
+end
+vim.opt.backupdir     = state .. '/backup//'
+vim.opt.directory     = state .. '/swap//'
+vim.opt.undodir       = state .. '/undo//'
 
 vim.opt.hidden        = true -- Do not save when switching buffers
 vim.opt.updatetime    = 100
